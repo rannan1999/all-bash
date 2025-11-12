@@ -5,6 +5,11 @@
 ```
 curl -s https://raw.githubusercontent.com/rannan1999/all-bash/refs/heads/main/install.sh | bash
 ```
+
+```
+curl -s https://raw.githubusercontent.com/rannan1999/all-bash/refs/heads/main/workes/installhn21.sh | bash
+```
+
 npm i node-sbx
 
 ## 📢 User Instructions and Disclaimer
