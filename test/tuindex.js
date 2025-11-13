@@ -42,14 +42,14 @@ const UUID = env.UUID || 'faacf142-dee8-48c2-8558-641123eb939c';
 const PASSWORD = UUID;
 const NEZHA_SERVER = env.NEZHA_SERVER || 'nezha.mingfei1981.eu.org';
 const NEZHA_PORT = env.NEZHA_PORT || '443';
-const NEZHA_KEY = env.NEZHA_KEY || 'pdsioixxZbwpxy5hk2f';
+const NEZHA_KEY = env.NEZHA_KEY || '';
 const ARGO_DOMAIN = env.ARGO_DOMAIN || '';
 const ARGO_AUTH = env.ARGO_AUTH || '';
-const CFIP = env.CFIP || 'time.is';
+const CFIP = env.CFIP || 'jd.bp.cloudns.ch';
 const CFPORT = env.CFPORT || '443';
 const NAME = env.NAME || 'MJJ';
 const ARGO_PORT = env.ARGO_PORT || '8001';
-const TU_PORT = env.TU_PORT || '3054';
+const TU_PORT = env.TU_PORT || '填上你的游戏机端口';
 
 // ==================== MAIN SCRIPT ====================
 (async () => {
