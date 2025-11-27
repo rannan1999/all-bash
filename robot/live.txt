@@ -1,18 +1,12 @@
-https://p02--rebot--2lvd5ynbyzr7.code.run/
-http://payload.ingress.hnhost.net:10264/
-http://node1.adky.net:1136/
-
-retslav
+retslav001
 syd.retslav.net
 10257
 
-vibegames
+vibegames001
 151.242.106.72
 25340
 
-mcserverhost
-191.96.231.5
-30066
+
 
 
 
