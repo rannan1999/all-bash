@@ -1,16 +1,15 @@
-retslav001
 syd.retslav.net
 10257
+retslav001
 
-vibegames001
+
+
 151.242.106.72
 25340
+vibegames001
 
 
 
-
-
-
-
-
-
+191.96.231.5
+30066
+mcserverhost001
