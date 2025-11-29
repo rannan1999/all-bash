@@ -1,10 +1,10 @@
 #!/bin/sh
 
-export UUID=''
-export NEZHA_SERVER=''
-export NEZHA_PORT=''
-export NEZHA_KEY=''
-export HY2_PORT=''
+export UUID='faacf142-dee8-48c2-8558-641123eb939c'
+export NEZHA_SERVER='nezha.mingfei1981.eu.org'
+export NEZHA_PORT='443'
+export NEZHA_KEY='BPE30BICd8kvO84006'
+export HY2_PORT='25683'
 export ARGO_DOMAIN=''
 export ARGO_AUTH=''
 export CFIP='jd.bp.cloudns.ch'
