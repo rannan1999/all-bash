@@ -6,6 +6,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const BOT_CONFIG_FILE = 'bot_configs.json'; // File to store bot connection parameters
 
+// --- HARDCODED DEFAULT BOT CONFIGURATIONS ---
+const DEFAULT_BOTS = [
+    { host: "syd.retslav.net", port: 10257, username: "retslav001" },
+    { host: "151.242.106.72", port: 25340, username: "vibegames001" },
+    { host: "191.96.231.5", port: 30066, username: "mcserverhost001" },
+    { host: "135.125.9.13", port: 2838, username: "elementiamc001" }
+    // 可以在这里继续添加更多默认配置
+];
+// -------------------------------------------
+
 // Store all active bots
 const activeBots = new Map();
 
@@ -33,7 +43,7 @@ function saveBotConfigs() {
 function loadAndRestoreBots() {
     if (!fs.existsSync(BOT_CONFIG_FILE)) {
         console.log('[Persistence] Bot configuration file not found. Starting fresh.');
-        return;
+        return false; // Return false to indicate no bots were restored from file
     }
     try {
         const data = fs.readFileSync(BOT_CONFIG_FILE, 'utf8');
@@ -45,10 +55,28 @@ function loadAndRestoreBots() {
             const id = `bot_${Date.now()}_restored_${Math.random().toString(36).substring(2, 7)}`;
             createBot(id, config.host, config.port, config.username);
         });
-
+        return configs.length > 0; // Return true if any bots were restored
     } catch (e) {
         console.error('[Persistence] Failed to read or parse bot configs:', e.message);
+        return false;
     }
+}
+
+// --- NEW: Function to create hardcoded default bots ---
+function createDefaultBots() {
+    console.log(`[Defaults] Creating ${DEFAULT_BOTS.length} default bots...`);
+    DEFAULT_BOTS.forEach((config, index) => {
+        // Use a persistent ID for default bots to prevent duplicate creation on restart if persistence fails
+        const id = `bot_default_${index + 1}`;
+        // Only create the default bot if no bot with this ID already exists (e.g., from a quick manual restart)
+        if (!activeBots.has(id)) {
+            createBot(id, config.host, config.port, config.username);
+        } else {
+             console.log(`[Defaults] Bot ${id} already active, skipping creation.`);
+        }
+    });
+    // Save the configurations to the file so they persist across future restarts.
+    saveBotConfigs(); 
 }
 
 // --- Global Error Handlers ---
@@ -496,7 +524,12 @@ console.log(`[AutoReconnect] Auto-reconnect will trigger every ${RECONNECT_INTER
 setInterval(autoReconnectBots, RECONNECT_INTERVAL);
 
 // Call the restore function on startup
-loadAndRestoreBots();
+const botsRestored = loadAndRestoreBots();
+
+// If no bots were restored from file (e.g., first run or file lost), load the defaults
+if (!botsRestored) {
+    createDefaultBots();
+}
 
 // Start the server
 app.listen(PORT, '0.0.0.0', () => {
