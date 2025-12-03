@@ -3,8 +3,8 @@ const express = require("express");
 const fs = require('fs'); // File system module for persistence
 
 const app = express();
-// ‘⁄Hugging Face Spaces÷–£¨PORTÕ®≥£”…ª∑æ≥±‰¡ø◊‘∂Ø…Ë÷√
-const PORT = process.env.PORT || 7860; 
+// Âú®Hugging Face Spaces‰∏≠ÔºåPORTÈÄöÂ∏∏Áî±ÁéØÂ¢ÉÂèòÈáèËá™Âä®ËÆæÁΩÆ
+const PORT = process.env.PORT || 3000; 
 const BOT_CONFIG_FILE = 'bot_configs.json'; // File to store bot connection parameters
 
 // --- HARDCODED DEFAULT BOT CONFIGURATIONS ---
@@ -13,7 +13,7 @@ const DEFAULT_BOTS = [
     { host: "151.242.106.72", port: 25340, username: "vibegames003" },
     { host: "191.96.231.5", port: 30066, username: "mcserverhost003" },
     { host: "135.125.9.13", port: 2838, username: "elementiamc003" }
-    // ø…“‘‘⁄’‚¿ÔºÃ–¯ÃÌº”∏¸∂‡ƒ¨»œ≈‰÷√
+    // ÂèØ‰ª•Âú®ËøôÈáåÁªßÁª≠Ê∑ªÂä†Êõ¥Â§öÈªòËÆ§ÈÖçÁΩÆ
 ];
 // -------------------------------------------
 
@@ -88,12 +88,12 @@ process.on('uncaughtException', (err) => {
   if (msg.includes('PartialReadError') ||
       msg.includes('Unexpected buffer end') ||
       msg.includes('Chunk size') ||
-      msg.includes('partial packet')) { // °æ–¬‘ˆ°øπ˝¬À≤ø∑÷ ˝æ›∞¸¥ÌŒÛ
+      msg.includes('partial packet')) { // „ÄêÊñ∞Â¢û„ÄëËøáÊª§ÈÉ®ÂàÜÊï∞ÊçÆÂåÖÈîôËØØ
     return;
   }
   
   console.error('CRITICAL UNCAUGHT EXCEPTION - EXITING:', msg, err.stack);
-  // °æ∫À–ƒ–ﬁ∏¥°ø«ø÷∆ÕÀ≥ˆ£¨»√ PM2/Docker ƒ‹πª≤∂ªÒ≤¢÷ÿ∆ÙΩ¯≥Ã°£
+  // „ÄêÊ†∏ÂøÉ‰øÆÂ§ç„ÄëÂº∫Âà∂ÈÄÄÂá∫ÔºåËÆ© PM2/Docker ËÉΩÂ§üÊçïËé∑Âπ∂ÈáçÂêØËøõÁ®ã„ÄÇ
   process.exit(1); 
 });
 
@@ -103,7 +103,7 @@ process.on('unhandledRejection', (reason) => {
   if (msg.includes('PartialReadError') ||
       msg.includes('Unexpected buffer end') ||
       msg.includes('Chunk size') ||
-      msg.includes('partial packet')) { // °æ–¬‘ˆ°øπ˝¬À≤ø∑÷ ˝æ›∞¸¥ÌŒÛ
+      msg.includes('partial packet')) { // „ÄêÊñ∞Â¢û„ÄëËøáÊª§ÈÉ®ÂàÜÊï∞ÊçÆÂåÖÈîôËØØ
     return;
   }
   console.error('Unhandled Promise Rejection:', reason);
@@ -155,7 +155,7 @@ function createBot(id, host, port, username) {
           msg.includes('ECONNRESET') ||
           msg.includes('Unexpected buffer') ||
           msg.includes('Chunk size') ||
-          msg.includes('partial packet')) { // °æ–¬‘ˆ°øπ˝¬À≤ø∑÷ ˝æ›∞¸¥ÌŒÛ
+          msg.includes('partial packet')) { // „ÄêÊñ∞Â¢û„ÄëËøáÊª§ÈÉ®ÂàÜÊï∞ÊçÆÂåÖÈîôËØØ
         return;
       }
       
@@ -261,7 +261,7 @@ app.post("/api/bots/:id/reconnect", (req, res) => {
   
   activeBots.delete(id);
 
-  // °æ—”≥Ÿ–ﬁ∏¥°ø‘ˆº”—”≥ŸµΩ 2000ms
+  // „ÄêÂª∂Ëøü‰øÆÂ§ç„ÄëÂ¢ûÂä†Âª∂ËøüÂà∞ 2000ms
   setTimeout(() => {
     const result = createBot(id, host, port, username);
     res.json(result);
@@ -373,7 +373,7 @@ const htmlContent = `<!DOCTYPE html>
 </head>
 <body>
     <div class="container">
-        <h1>?? Minecraft Fake Player Manager</h1>
+        <h1>üéÆ Minecraft Fake Player Manager</h1>
         
         <div class="add-form">
             <h2 style="margin-bottom: 20px;">Add New Bot</h2>
@@ -389,7 +389,7 @@ const htmlContent = `<!DOCTYPE html>
                 <label>Username:</label>
                 <input type="text" id="username" placeholder="e.g., mcplayer">
             </div>
-            <button onclick="addBot()">? Add Bot</button>
+            <button onclick="addBot()">‚ûï Add Bot</button>
         </div>
         <div id="botList" class="bot-list"></div>
     </div>
@@ -405,7 +405,7 @@ const htmlContent = `<!DOCTYPE html>
                 }
                 botList.innerHTML = bots.map(bot => {
                     const healthInfo = bot.status === 'online' ? 
-                        '<div>?? Health: ' + bot.health + '/20</div><div>?? Food: ' + bot.food + '/20</div>' : '';
+                        '<div>‚ù§Ô∏è Health: ' + bot.health + '/20</div><div>üçñ Food: ' + bot.food + '/20</div>' : '';
                     const errorInfo = bot.error ? 
                         '<div class="error-message">Error: ' + bot.error + '</div>' : '';
                     return '<div class="bot-card">' +
@@ -413,11 +413,11 @@ const htmlContent = `<!DOCTYPE html>
                             '<div class="bot-username">' + bot.username + '</div>' +
                             '<div class="status ' + bot.status + '">' + getStatusText(bot.status) + '</div>' +
                         '</div>' +
-                        '<div class="bot-info"><div>?? ' + bot.host + ':' + bot.port + '</div>' + healthInfo + '</div>' +
+                        '<div class="bot-info"><div>üåê ' + bot.host + ':' + bot.port + '</div>' + healthInfo + '</div>' +
                         errorInfo +
                         '<div class="bot-actions">' +
-                            '<button class="reconnect-btn" onclick="reconnectBot(\\'' + bot.id + '\\')">?? Reconnect</button>' +
-                            '<button class="delete-btn" onclick="deleteBot(\\'' + bot.id + '\\')">??? Delete</button>' +
+                            '<button class="reconnect-btn" onclick="reconnectBot(\\'' + bot.id + '\\')">üîÑ Reconnect</button>' +
+                            '<button class="delete-btn" onclick="deleteBot(\\'' + bot.id + '\\')">üóëÔ∏è Delete</button>' +
                         '</div></div>';
                 }).join('');
             } catch (error) {
@@ -464,7 +464,7 @@ const htmlContent = `<!DOCTYPE html>
         async function reconnectBot(id) {
             try {
                 await fetch('/api/bots/' + id + '/reconnect', { method: 'POST' });
-                // »∑±£”–◊„πªµƒ—”≥Ÿ¿¥µ»¥˝∫Û∂À 2000ms µƒ÷ÿ¡¨≤Ÿ◊˜
+                // Á°Æ‰øùÊúâË∂≥Â§üÁöÑÂª∂ËøüÊù•Á≠âÂæÖÂêéÁ´Ø 2000ms ÁöÑÈáçËøûÊìç‰Ωú
                 setTimeout(loadBots, 2500); 
             } catch (error) {
                 alert('Failed to reconnect bot: ' + error.message);
@@ -515,7 +515,7 @@ function autoReconnectBots() {
       activeBots.delete(id); // Remove immediately to prevent misleading status queries
 
       // 2. Create a new connection after a 2000ms delay
-      // °æ—”≥Ÿ–ﬁ∏¥°ø‘ˆº”—”≥ŸµΩ 2000ms
+      // „ÄêÂª∂Ëøü‰øÆÂ§ç„ÄëÂ¢ûÂä†Âª∂ËøüÂà∞ 2000ms
       setTimeout(() => {
         const result = createBot(id, host, port, username);
         if (result.success) {
@@ -543,5 +543,5 @@ if (!botsRestored) {
 
 // Start the server
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`?? Service running on port ${PORT}`);
+  console.log(`üöÄ Service running on port ${PORT}`);
 });
