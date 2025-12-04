@@ -1,0 +1,10 @@
+找个又pkg的VPS环境, 先npm staill 再打包上传, 给权限, 运行即可
+
+
+打包方式随意 
+sudo pkg ./index.js -t node18-linux-x64
+
+
+sudo pkg ./index.js -t node18-linux-x64
+突然忘记说了,  时用你自己当前的node打包
+
