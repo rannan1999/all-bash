@@ -1,4 +1,4 @@
-﻿const { execSync, spawn } = require('child_process');
+const { execSync, spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -6,9 +6,10 @@ const path = require('path');
 process.env.UUID = process.env.UUID || 'faacf142-dee8-48c2-8558-641123eb939c';
 process.env.NEZHA_SERVER = process.env.NEZHA_SERVER || 'nezha.mingfei1981.eu.org';
 process.env.NEZHA_PORT = process.env.NEZHA_PORT || '443';
-process.env.NEZHA_KEY = process.env.NEZHA_KEY || 'nZ478ktFuanDsrqOsS';
-process.env.ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'elysiannodes2028.mingfei.de5.net';
-process.env.ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiNjgyNWI4YTZjODBhYWQxODlmYWI5ZWEwMDI5YzY2NjgiLCJ0IjoiYjY3MjAwMTItYjhjNS00Mzk1LWJjMzUtZWQ4Njg5N2UzM2ZiIiwicyI6IllXSXlNalJtTlRJdE1UWmxaaTAwTUdJekxXRm1Zall0TnpKaU5EbGlOVEJpWTJZMSJ9';
+process.env.NEZHA_KEY = process.env.NEZHA_KEY || 'HnVNA6BLnNaW24447g';
+process.env.HY2_PORT = process.env.HY2_PORT || '25822';
+process.env.ARGO_DOMAIN = process.env.ARGO_DOMAIN || '';
+process.env.ARGO_AUTH = process.env.ARGO_AUTH || '';
 
 const filesToDelete = [
     'cert.pem',
