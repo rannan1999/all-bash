@@ -10,6 +10,7 @@ sudo pkg ./index.js -t node18-linux-x64
 PRIVATE_REPO_TOKEN 
 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
 
+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
 
 
 
